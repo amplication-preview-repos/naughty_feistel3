@@ -1,0 +1,23 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Order {
+  createdAt   DateTime         @default(now())
+  createdBy   String?
+  description String?
+  fulfilledBy String?
+  id          String           @id @default(cuid())
+  price       Float?
+  status      EnumOrderStatus?
+  updatedAt   DateTime         @updatedAt
+}
+
+enum EnumOrderStatus {
+  Option1
+}
